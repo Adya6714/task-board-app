@@ -107,7 +107,6 @@ function App() {
       </DragDropContext>
     </div>
   );
-}
 
 export default App;
 
