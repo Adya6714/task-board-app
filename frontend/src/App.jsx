@@ -8,13 +8,32 @@ const STATUSES = [
   { key: 'done', label: 'Done' },
 ];
 
+const baseURL = 'https://task-board-backend-y5zc.onrender.com';
+export const fetchTasks = async () => {
+  const response = await fetch(`${baseURL}/tasks`);
+  const data = await response.json();
+  return data;
+};
+
 function App() {
   const [tasks, setTasks] = useState([]);
-  const baseURL = 'http://localhost:8000';
 
   useEffect(() => {
-    axios.get(`${baseURL}/tasks`).then(res => setTasks(res.data));
+    fetchTasks().then(setTasks);
   }, []);
+
+  return (
+    <div>
+      <h1>Task List</h1>
+      <ul>
+        {tasks.map((task) => (
+          <li key={task.id}>{task.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 
   const onDragEnd = async ({ source, destination, draggableId }) => {
     if (!destination) return;
