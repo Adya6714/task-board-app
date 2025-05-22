@@ -38,6 +38,10 @@ def get_task_index(task_id: int):
 def list_tasks():
     return tasks_db
 
+@app.get("/")
+def root():
+    return {"message": "Task Board Backend is running!"}
+
 @app.post("/tasks", response_model=Task)
 def create_task(task: Task):
     global next_id
