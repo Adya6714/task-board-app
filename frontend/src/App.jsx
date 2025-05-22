@@ -22,19 +22,6 @@ function App() {
     fetchTasks().then(setTasks);
   }, []);
 
-  return (
-    <div>
-      <h1>Task List</h1>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-
   const onDragEnd = async ({ source, destination, draggableId }) => {
     if (!destination) return;
     const taskId = parseInt(draggableId);
@@ -107,6 +94,6 @@ function App() {
       </DragDropContext>
     </div>
   );
+}
 
 export default App;
-
